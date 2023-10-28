@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import BrewerySearch from './BrewerySearch';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Chart from 'chart.js';
 
 function BreweriesList() {
   const [breweries, setBreweries] = useState([]);
@@ -116,9 +118,16 @@ function BreweriesList() {
           ))}
         </select>
       </div>
+      <div>
+        <h2>Breweries by State</h2>
+        {/* Use the BreweryChart component here and pass the required prop */}
+        <BreweryChart breweriesByState={breweriesByState} />
+      </div>
       <ul>
         {filteredBreweries.map((brewery) => (
-          <li key={brewery.id}>{brewery.name}</li>
+          <li key={brewery.id}>
+            <Link to={`/${brewery.id}`}>{brewery.name}</Link>
+          </li>
         ))}
       </ul>
     </div>
